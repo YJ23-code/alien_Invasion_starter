@@ -15,5 +15,18 @@ class Ship:
 
         self.rect.midbottom = self.screen_rect.midbottom
 
+        self.moving_right = False
+        self.moving_left = False
+        self.x = float(self.rect.x)
+
+
+    def update(self):
+        if self.moving_right:
+            self.x += 1
+        if self.moving_left:
+            self.x -= 1
+
+        self.rect.x = int(self.x)
+
     def blitme(self):
         self.screen.blit(self.image, self.rect)
