@@ -37,6 +37,15 @@ class AlienInvasion:
                 self.running = False
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.rect.x += 1 
+                elif event.key == pygame.K_LEFT:
+                    self.ship.rect.x -= 1 
+                elif event.key == pygame.K_UP:
+                    self.ship.rect.y -= 1
+                elif event.key == pygame.K_DOWN:
+                    self.ship.rect.y += 1         
 
     def _update_screen(self):
         self.screen.blit(self.bg, (0, 0))
