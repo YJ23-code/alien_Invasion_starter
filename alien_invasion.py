@@ -3,6 +3,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from arsenal import Arsenal
+from alien import Alien
 
 class AlienInvasion:
     def __init__(self):
@@ -26,6 +27,7 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.ship = Ship(self)
         self.arsenal = Arsenal(self)
+        self.alien = Alien(self)
 
     def run_game(self):
         while self.running:
@@ -67,6 +69,7 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0, 0))
         self.ship.blitme()
         self.arsenal.draw()
+        self.screen.blit(self.alien.image, self.alien.rect)
         pygame.display.flip()
 
             
