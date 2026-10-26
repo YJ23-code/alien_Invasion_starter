@@ -47,3 +47,13 @@ class AlienFleet:
      """Check the fleet edges and update all aliens."""
      self.check_fleet_edges()
      self.aliens.update()
+
+    def check_aliens_bottom(self):
+        """Check if any alien has reached the bottom of the screen."""
+        screen_rect = self.screen.get_rect()
+
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                return True
+
+        return False

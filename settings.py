@@ -8,6 +8,7 @@ class Settings:
         self.FPS: int = 60
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'Starbasesnow.png'
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship.png'
+        self.ship_limit = 3
         self.ship_h = 60
         self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laserBlast.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'

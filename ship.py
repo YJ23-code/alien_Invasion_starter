@@ -1,5 +1,4 @@
 import pygame
-from pathlib import Path
 
 
 class Ship:
@@ -19,14 +18,23 @@ class Ship:
         self.moving_left = False
         self.x = float(self.rect.x)
 
-
     def update(self):
+        """Move the ship and keep it inside the screen."""
+
         if self.moving_right:
-            self.x += 1
+            self.x += 5
+
         if self.moving_left:
-            self.x -= 1
+            self.x -= 5
+
+        # Prevent the ship from leaving the screen.
+        self.x = max(
+            0,
+            min(self.x, self.screen_rect.width - self.rect.width)
+        )
 
         self.rect.x = int(self.x)
 
     def blitme(self):
+        """Draw the ship on the screen."""
         self.screen.blit(self.image, self.rect)
