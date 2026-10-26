@@ -3,7 +3,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from arsenal import Arsenal
-from alien import Alien
+from alien_fleet import AlienFleet
 
 class AlienInvasion:
     def __init__(self):
@@ -27,18 +27,17 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.ship = Ship(self)
         self.arsenal = Arsenal(self)
-        self.alien = Alien(
-            self,
-            self.settings.alien_w,
-            self.settings.alien_h
-        )
+        self.fleet = AlienFleet(self)
+        self.fleet.create_fleet()
+    
+        
 
     def run_game(self):
         while self.running:
             self._check_events()
             self.ship.update()
             self.arsenal.update_arsenal()
-            self.alien.update()
+            self.fleet.update_fleet()
             self._update_screen()
             self.clock.tick(self.settings.FPS)
 
@@ -74,7 +73,7 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0, 0))
         self.ship.blitme()
         self.arsenal.draw()
-        self.screen.blit(self.alien.image, self.alien.rect)
+        self.fleet.aliens.draw(self.screen)
         pygame.display.flip()
 
             
