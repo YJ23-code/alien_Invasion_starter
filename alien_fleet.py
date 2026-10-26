@@ -18,19 +18,30 @@ class AlienFleet:
         alien_width = self.settings.alien_w
         available_space_x = self.settings.screen_w
         number_aliens_x = available_space_x // (2* alien_width)
-        for alien_number in range(number_aliens_x):
-            x = alien_width + 2 * alien_width * alien_number
-            y = self.settings.alien_h
+        alien_height = self.settings.alien_h
+        available_space_y = self.settings.screen_h - (3 * alien_height) - self.settings.ship_h
+        number_rows = available_space_y // (2 * alien_height)
+        for row_number in range(number_rows):
+         for alien_number in range(number_aliens_x):
+           x = alien_width + 2 * alien_width * alien_number
+           y = alien_height + 2 * alien_height * row_number
 
-            alien = Alien(self.game, x, y)
-            self.aliens.add(alien)
+           alien = Alien(self.game, x, y)
+           self.aliens.add(alien)
 
     def check_fleet_edges(self):
-      """Reverse direction if any alien reaches a screen edge."""
-      for alien in self.aliens.sprites():
+     """Drop the fleet and reverse direction at screen edges."""
+     for alien in self.aliens.sprites():
         if alien.check_edges():
-            self.settings.fleet_direction *= -1
+            self.change_fleet_direction()
             break
+
+    def change_fleet_direction(self):
+     """Move the fleet downward and reverse its direction."""
+     for alien in self.aliens.sprites():
+        alien.rect.y += self.settings.fleet_drop_speed
+
+     self.settings.fleet_direction *= -1    
 
     def update_fleet(self):
      """Check the fleet edges and update all aliens."""
