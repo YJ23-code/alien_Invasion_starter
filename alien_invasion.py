@@ -27,13 +27,18 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.ship = Ship(self)
         self.arsenal = Arsenal(self)
-        self.alien = Alien(self)
+        self.alien = Alien(
+            self,
+            self.settings.alien_w,
+            self.settings.alien_h
+        )
 
     def run_game(self):
         while self.running:
             self._check_events()
             self.ship.update()
             self.arsenal.update_arsenal()
+            self.alien.update()
             self._update_screen()
             self.clock.tick(self.settings.FPS)
 
