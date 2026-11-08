@@ -5,6 +5,7 @@ from ship import Ship
 from arsenal import Arsenal
 from alien_fleet import AlienFleet
 from game_stats import GameStats
+from button import Button
 
 
 class AlienInvasion:
@@ -12,10 +13,13 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
         self.stats = GameStats(self)
+        
 
         self.screen = pygame.display.set_mode(
             (self.settings.screen_w, self.settings.screen_h)
         )
+        # Make the play button.
+        self.play_button = Button(self, "Play")
         pygame.display.set_caption(self.settings.name)
 
         self.bg = pygame.image.load(self.settings.bg_file)
@@ -107,12 +111,27 @@ class AlienInvasion:
                 elif event.key == pygame.K_LEFT:
                     self.ship.moving_left = False
 
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+
+    def _check_play_button(self, mouse_pos):
+        """Start a new game when the player clicks Play."""
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+
+        if button_clicked and not self.stats.game_active:
+            self.stats.game_active = True                 
+
     def _update_screen(self):
         """Update images on the screen."""
         self.screen.blit(self.bg, (0, 0))
         self.ship.blitme()
         self.arsenal.draw()
         self.fleet.aliens.draw(self.screen)
+        # Draw theplay button if the game is inactive.
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         pygame.display.flip()
 
 
