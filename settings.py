@@ -22,3 +22,19 @@ class Settings:
         self.fleet_speed = 5
         self.fleet_direction = 1
         self.fleet_drop_speed = 10
+        # How quickly the game speeds up.
+        self.speedup_scale = 1.1
+        # Initialize settings that change during gameplay.
+        self.initialize_dynamic_settings()
+
+
+    def initialize_dynamic_settings(self):
+        """Initialize settings that change during gameplay."""
+        self.bullet_speed = 7
+        self.fleet_speed = 5
+        self.fleet_direction = 1   
+
+    def increase_difficulty(self):
+        """Increase the game's speed settings."""
+        self.bullet_speed *= self.speedup_scale
+        self.fleet_speed *= self.speedup_scale  

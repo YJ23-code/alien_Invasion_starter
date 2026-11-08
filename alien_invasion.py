@@ -128,6 +128,9 @@ class AlienInvasion:
     def restart_game(self):
         """reset the game for a fresh start"""
         self.stats.reset_stats()
+        # Reset the difficulty to its starting settings.
+        self.settings.initialize_dynamic_settings()
+        
         self.stats.game_active = True    
         self.arsenal.arsenal.empty()  
         self.settings.fleet_direction = 1

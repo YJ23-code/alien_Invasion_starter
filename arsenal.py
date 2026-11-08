@@ -22,6 +22,7 @@ class Arsenal:
         )
 
         if not self.game.fleet.aliens:
+            self.settings.increase_difficulty()
             self.game.fleet.create_fleet()
 
     def draw(self) -> None:
