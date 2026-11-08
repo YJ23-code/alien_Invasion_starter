@@ -24,14 +24,18 @@ class Arsenal:
         if collisions:
             for aliens_hit in collisions.values():
                 self.game.stats.score += 50 * len(aliens_hit)
+                self.game.hud.prep_score()
                             # Check for a new high score.
             if self.game.stats.score > self.game.stats.high_score:
                 self.game.stats.high_score = self.game.stats.score
                 self.game.stats.save_high_score()
+                self.game.hud.prep_high_score()
 
         if not self.game.fleet.aliens:
             self.settings.increase_difficulty()
             self.game.fleet.create_fleet()
+            self.game.stats.level += 1
+            self.game.hud.prep_level()
 
     def draw(self) -> None:
         for bullet in self.arsenal:

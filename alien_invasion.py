@@ -6,6 +6,7 @@ from arsenal import Arsenal
 from alien_fleet import AlienFleet
 from game_stats import GameStats
 from button import Button
+from hud import HUD
 
 
 class AlienInvasion:
@@ -20,6 +21,8 @@ class AlienInvasion:
         )
         # Make the play button.
         self.play_button = Button(self, "Play")
+        # Create the HUD.
+        self.hud = HUD(self)
         pygame.display.set_caption(self.settings.name)
 
         self.bg = pygame.image.load(self.settings.bg_file)
@@ -62,6 +65,8 @@ class AlienInvasion:
         if self.stats.ships_left > 0:
             self.stats.ships_left -= 1
             print(f"Ships left: {self.stats.ships_left}")
+            # Update the remaining ship icons.
+            self.hud.prep_ships()
 
             if self.stats.ships_left == 0:
                 self.stats.game_active = False
@@ -130,7 +135,12 @@ class AlienInvasion:
         self.stats.reset_stats()
         # Reset the difficulty to its starting settings.
         self.settings.initialize_dynamic_settings()
-        
+        # Reset the HUD for a new game.
+        self.hud.prep_score()
+        self.hud.prep_high_score()
+        self.hud.prep_level()
+        self.hud.prep_ships()
+
         self.stats.game_active = True    
         self.arsenal.arsenal.empty()  
         self.settings.fleet_direction = 1
@@ -146,6 +156,8 @@ class AlienInvasion:
         # Draw theplay button if the game is inactive.
         if not self.stats.game_active:
             self.play_button.draw_button()
+            # Draw the HUD.
+        self.hud.show_hud()
         pygame.display.flip()
 
 
