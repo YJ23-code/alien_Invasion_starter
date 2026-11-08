@@ -14,12 +14,20 @@ class Arsenal:
             
     def update_arsenal(self) -> None:
         self.arsenal.update()
-        pygame.sprite.groupcollide(
+        collisions = pygame.sprite.groupcollide(
             self.arsenal,
             self.game.fleet.aliens,
             True,
             True
         )
+        # Award points for each destroyed alien.
+        if collisions:
+            for aliens_hit in collisions.values():
+                self.game.stats.score += 50 * len(aliens_hit)
+                            # Check for a new high score.
+            if self.game.stats.score > self.game.stats.high_score:
+                self.game.stats.high_score = self.game.stats.score
+                self.game.stats.save_high_score()
 
         if not self.game.fleet.aliens:
             self.settings.increase_difficulty()
