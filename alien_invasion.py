@@ -121,7 +121,18 @@ class AlienInvasion:
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
 
         if button_clicked and not self.stats.game_active:
-            self.stats.game_active = True                 
+            self.restart_game() 
+
+
+
+    def restart_game(self):
+        """reset the game for a fresh start"""
+        self.stats.reset_stats()
+        self.stats.game_active = True    
+        self.arsenal.arsenal.empty()  
+        self.settings.fleet_direction = 1
+        self.fleet.create_fleet()  
+        self.ship.center_ship()
 
     def _update_screen(self):
         """Update images on the screen."""
