@@ -12,6 +12,7 @@ class Bullet(Sprite):
         self.screen = game.screen
         self.settings = game.settings
         self.image = pygame.image.load(self.settings.bullet_file)
+        self.image = pygame.transform.rotate(self.image, 90)
         self.image = pygame.transform.scale(
             self.image,
             (self.settings.bullet_w, self.settings.bullet_h)

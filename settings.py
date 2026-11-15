@@ -2,7 +2,7 @@ from pathlib import Path
 
 class Settings:
     def __init__(self):
-        self.name: str = "Alien Invasion"
+        self.name: str = "Rebel Assault - Track 2"
         self.screen_w: int = 1200
         self.screen_h: int = 800
         self.FPS: int = 60
@@ -10,7 +10,7 @@ class Settings:
         self.ship_file = Path(__file__).resolve().parent / 'Assets' / 'images' / 'xwing.png'
         self.ship_limit = 3
         self.ship_h = 60
-        self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laserBlast.png'
+        self.bullet_file = Path(__file__).resolve().parent / 'Assets' / 'images' / 'red_laser.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
         self.bullet_speed = 7
         self.bullet_w = 25
