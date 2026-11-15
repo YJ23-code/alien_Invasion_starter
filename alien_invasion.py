@@ -13,16 +13,17 @@ class AlienInvasion:
     def __init__(self):
         pygame.init()
         self.settings = Settings()
-        self.stats = GameStats(self)
+        #Disabled for milestone 1
+        #self.stats = GameStats(self)
         
 
         self.screen = pygame.display.set_mode(
             (self.settings.screen_w, self.settings.screen_h)
         )
         # Make the play button.
-        self.play_button = Button(self, "Play")
+        #self.play_button = Button(self, "Play")
         # Create the HUD.
-        self.hud = HUD(self)
+       # self.hud = HUD(self)
         pygame.display.set_caption(self.settings.name)
 
         self.bg = pygame.image.load(self.settings.bg_file)
@@ -36,26 +37,24 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.arsenal = Arsenal(self)
-        self.fleet = AlienFleet(self)
-        self.fleet.create_fleet()
+        #Disabled till milestone 2
+        #self.fleet = AlienFleet(self)
+        #self.fleet.create_fleet()
 
     def run_game(self):
-        """Start the main game loop."""
+        """Milestone 1 player prototype"""
         while self.running:
             self._check_events()
+            # Milestone 1: Only update the player and lasers.
 
-            if self.stats.game_active:
-                self.ship.update()
-                self.arsenal.update_arsenal()
-                self.fleet.update_fleet()
+            
+            self.ship.update()
+            self.arsenal.update_arsenal()
 
-                if pygame.sprite.spritecollideany(
-                    self.ship, self.fleet.aliens
-                ):
-                    self._ship_hit()
+            # Fleet and collision disabled for milestone 1 
+            # self.fleet.update_fleet()
 
-                elif self.fleet.check_aliens_bottom():
-                    self._ship_hit()
+                
 
             self._update_screen()
             self.clock.tick(self.settings.FPS)
@@ -95,20 +94,20 @@ class AlienInvasion:
                 sys.exit()
 
             elif event.type == pygame.KEYDOWN:
-                if self.stats.game_active:
-                    if event.key == pygame.K_RIGHT:
+                
+                if event.key == pygame.K_RIGHT:
                         self.ship.moving_right = True
-                    elif event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT:
                         self.ship.moving_left = True
-                    elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP:
                         self.ship.rect.y -= 5
-                    elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN:
                         self.ship.rect.y += 5
-                    elif event.key == pygame.K_SPACE:
-                        if self.arsenal.fire_bullet():
-                            pygame.mixer.Sound(
-                                self.settings.laser_sound
-                            ).play()
+                elif event.key == pygame.K_SPACE:
+                    if self.arsenal.fire_bullet():
+                        pygame.mixer.Sound(
+                            self.settings.laser_sound
+                        ).play()
 
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
@@ -116,10 +115,10 @@ class AlienInvasion:
                 elif event.key == pygame.K_LEFT:
                     self.ship.moving_left = False
 
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+            #elif event.type == pygame.MOUSEBUTTONDOWN:
                 
-                mouse_pos = pygame.mouse.get_pos()
-                self._check_play_button(mouse_pos)
+                #mouse_pos = pygame.mouse.get_pos()
+                #self._check_play_button(mouse_pos)
 
     def _check_play_button(self, mouse_pos):
         """Start a new game when the player clicks Play."""
@@ -152,12 +151,13 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0, 0))
         self.ship.blitme()
         self.arsenal.draw()
-        self.fleet.aliens.draw(self.screen)
+        #self.fleet.aliens.draw(self.screen)
         # Draw theplay button if the game is inactive.
-        if not self.stats.game_active:
-            self.play_button.draw_button()
+        # Disable for milestone 1 
+        #if not self.stats.game_active:
+            #self.play_button.draw_button()
             # Draw the HUD.
-        self.hud.show_hud()
+        #self.hud.show_hud()
         pygame.display.flip()
 
 
