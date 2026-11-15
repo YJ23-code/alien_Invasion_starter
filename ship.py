@@ -10,6 +10,10 @@ class Ship(Sprite):
 
         self.image = pygame.image.load(
             self.settings.ship_file
+        ).convert_alpha()
+
+        self.image = pygame.transform.smoothscale(
+            self.image, (80, 100)
         )
         self.rect = self.image.get_rect()
         self.screen_rect = self.screen.get_rect()
