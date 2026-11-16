@@ -1,3 +1,13 @@
+"""
+Program Name: Attacked by Rebels - Track 2
+Author: Yasir 
+Purpose: Run the main game and control the x-wing player, laser firing, and game screen for Milestone 1 
+Starter Code Links: Alien Invasion in class tutorial
+Date: 11/15.2026
+"""
+
+
+
 import pygame
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
@@ -6,7 +16,9 @@ if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
 class Bullet(Sprite):
+    """Represent a laser fired from the X-Wing."""
     def __init__(self, game: 'AlienInvasion') -> None:
+        """Initialize the laser image and starting position."""
         super().__init__()
         self.game = game
         self.screen = game.screen
@@ -23,8 +35,10 @@ class Bullet(Sprite):
         self.y = float(self.rect.y)
 
     def update(self) -> None:
+        """Move the laser upward on the screen."""
         self.y -= self.settings.bullet_speed
         self.rect.y = int(self.y)
 
     def draw_bullet(self) -> None:
+        """Draw the laser on the game screen."""
         self.screen.blit(self.image, self.rect)

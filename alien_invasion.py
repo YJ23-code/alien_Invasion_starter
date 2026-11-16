@@ -1,3 +1,14 @@
+"""
+Program Name: Attacked by Rebels - Track 2
+Author: Yasir 
+Purpose: Run the main game and control the x-wing player, laser firing, and game screen for Milestone 1 
+Starter Code Links: Alien Invasion in class tutorial
+Date: 11/15.2026
+"""
+
+
+
+
 import sys
 import pygame
 from settings import Settings
@@ -10,7 +21,9 @@ from hud import HUD
 
 
 class AlienInvasion:
+    """Manage the Rebel Assault game, player controls """
     def __init__(self):
+        """Intialize the game settings, screen, ship, and lasers"""
         pygame.init()
         self.settings = Settings()
         #Disabled for milestone 1
@@ -130,7 +143,7 @@ class AlienInvasion:
 
 
     def restart_game(self):
-        """reset the game for a fresh start"""
+        """reset game stats,difficulty, and player position."""
         self.stats.reset_stats()
         # Reset the difficulty to its starting settings.
         self.settings.initialize_dynamic_settings()

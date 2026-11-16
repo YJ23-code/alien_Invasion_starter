@@ -1,9 +1,23 @@
+"""
+Program Name: Attacked by Rebels - Track 2
+Author: Yasir 
+Purpose: Run the main game and control the x-wing player, laser firing, and game screen for Milestone 1 
+Starter Code Links: Alien Invasion in class tutorial
+Date: 11/15.2026
+"""
+
+
+
+
+
 import pygame
 from pygame.sprite import Sprite
 
 
 class Ship(Sprite):
+    """Represent the players x wing spaceship."""
     def __init__(self, ai_game):
+        """Initialize the X wing image, position and movement"""
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings

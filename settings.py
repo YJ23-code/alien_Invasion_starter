@@ -1,12 +1,24 @@
+"""
+Program Name: Attacked by Rebels - Track 2
+Author: Yasir 
+Purpose: Run the main game and control the x-wing player, laser firing, and game screen for Milestone 1 
+Starter Code Links: Alien Invasion in class tutorial
+Date: 11/15.2026
+"""
+
+
+
 from pathlib import Path
 
 class Settings:
+    """Store the settings used by the Rebel Assault game."""
     def __init__(self):
+        """Initialize screen dimensions, assets, and gameplay settings."""
         self.name: str = "Rebel Assault - Track 2"
         self.screen_w: int = 1200
         self.screen_h: int = 800
         self.FPS: int = 60
-        self.bg_file = Path.cwd() / 'Assets' / 'images' / 'starwars_bg.jpg'
+        self.bg_file = Path(__file__).resolve().parent / 'Assets' / 'images' / 'starwars_bg.jpg'
         self.ship_file = Path(__file__).resolve().parent / 'Assets' / 'images' / 'xwing.png'
         self.ship_limit = 3
         self.ship_h = 60
