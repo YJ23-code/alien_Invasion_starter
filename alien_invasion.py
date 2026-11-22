@@ -1,9 +1,10 @@
 """
 Program Name: Attacked by Rebels - Track 2
 Author: Yasir 
-Purpose: Run the main game and control the x-wing player, laser firing, and game screen for Milestone 1 
+Purpose: Run the Star Wars game and manage player movement,
+         TIE fighter fleets, collisions, lives, and explosions.
 Starter Code Links: Alien Invasion in class tutorial
-Date: 11/15.2026
+Date: 11/22/2026
 """
 
 
@@ -17,8 +18,8 @@ from arsenal import Arsenal
 from alien_fleet import AlienFleet
 from game_stats import GameStats
 from explosion import Explosion
-from button import Button
-from hud import HUD
+#from button import Button
+#from hud import HUD
 
 
 class AlienInvasion:
@@ -27,7 +28,7 @@ class AlienInvasion:
         """Intialize the game settings, screen, ship, and lasers"""
         pygame.init()
         self.settings = Settings()
-        #Disabled for milestone 1
+        # Track remaining lives for Milestone 2.
         self.stats = GameStats(self)
         
 
@@ -55,7 +56,7 @@ class AlienInvasion:
         self.explosion_sound = pygame.mixer.Sound(
              str(self.settings.explosion_sound)
         )
-        #Disabled till milestone 2
+        # Create the V-shaped TIE fighter fleet.
         self.fleet = AlienFleet(self)
         self.fleet.create_fleet()
 
@@ -212,7 +213,7 @@ class AlienInvasion:
         for explosion in self.explosions:
             explosion.draw(self.screen)
         # Draw theplay button if the game is inactive.
-        # Disable for milestone 1 
+        # Play button and HUD remain disabled for Milestone 2.
         #if not self.stats.game_active:
             #self.play_button.draw_button()
             # Draw the HUD.

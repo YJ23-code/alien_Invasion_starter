@@ -1,9 +1,9 @@
 """
 Program Name: Attacked by Rebels - Track 2
 Author: Yasir 
-Purpose: Run the main game and control the x-wing player, laser firing, and game screen for Milestone 1 
+Purpose: Control the X-wing spaceship, movement, and positioning.
 Starter Code Links: Alien Invasion in class tutorial
-Date: 11/15.2026
+Date: 11/22/2026
 """
 
 

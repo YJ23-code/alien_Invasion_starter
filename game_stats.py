@@ -1,3 +1,14 @@
+"""
+Program Name: Attacked by Rebels - Track 2
+Author: Yasir 
+Purpose: Track player lives and game statistics.
+Starter Code Links: Alien Invasion in class tutorial
+Date: 11/21/2026
+"""
+
+
+
+
 import json
 from pathlib import Path
 
