@@ -16,6 +16,7 @@ from ship import Ship
 from arsenal import Arsenal
 from alien_fleet import AlienFleet
 from game_stats import GameStats
+from explosion import Explosion
 from button import Button
 from hud import HUD
 
@@ -50,6 +51,7 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.arsenal = Arsenal(self)
+        self.explosions = []
         self.explosion_sound = pygame.mixer.Sound(
              str(self.settings.explosion_sound)
         )
@@ -61,25 +63,36 @@ class AlienInvasion:
         """Run the game and update the player, lasers, and enemy fleet."""
         while self.running:
             self._check_events()
-            
 
-            
             self.ship.update()
             self.arsenal.update_arsenal()
-
-            # Fleet and collision disabled for milestone 1 
             self.fleet.update_fleet()
+
+            # Check for laser and TIE fighter collisions.
             collisions = pygame.sprite.groupcollide(
-            self.arsenal.arsenal,
-            self.fleet.aliens,
-            True,
-            True
+                self.arsenal.arsenal,
+                self.fleet.aliens,
+                True,
+                True
             )
+
             if collisions:
-               self.explosion_sound.play()
+                self.explosion_sound.play()
 
-                
+                for hit_aliens in collisions.values():
+                    for alien in hit_aliens:
+                        explosion = Explosion(
+                            alien.rect.centerx,
+                            alien.rect.centery
+                        )
+                        self.explosions.append(explosion)
 
+            # Update explosions every frame.
+            for explosion in self.explosions[:]:
+                explosion.update()
+
+                if not explosion.active:
+                    self.explosions.remove(explosion)
             self._update_screen()
             self.clock.tick(self.settings.FPS)
 
@@ -176,6 +189,9 @@ class AlienInvasion:
         self.ship.blitme()
         self.arsenal.draw()
         self.fleet.aliens.draw(self.screen)
+        # Draw explosion animation
+        for explosion in self.explosions:
+            explosion.draw(self.screen)
         # Draw theplay button if the game is inactive.
         # Disable for milestone 1 
         #if not self.stats.game_active:
