@@ -100,6 +100,10 @@ class AlienInvasion:
                                     alien.rect.centery
                                 )
                                 self.explosions.append(explosion)
+                    # Create another wave when all TIE fighters are destroyed.
+                    if not self.fleet.aliens:
+                     self.settings.fleet_direction = 1
+                     self.fleet.create_fleet()            
 
             # Update explosions every frame.
             for explosion in self.explosions[:]:
