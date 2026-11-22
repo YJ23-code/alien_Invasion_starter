@@ -1,9 +1,9 @@
 """
 Program Name: Attacked by Rebels - Track 2
 Author: Yasir 
-Purpose: Run the main game and control the x-wing player, laser firing, and game screen for Milestone 1 
+Purpose: Manage the X-wing laser firing system.
 Starter Code Links: Alien Invasion in class tutorial
-Date: 11/15.2026
+Date: 11/22/2026
 """
 
 
@@ -23,10 +23,13 @@ class Arsenal:
         self.settings = game.settings
         self.arsenal = pygame.sprite.Group()
             
-    def update_arsenal(self) -> None:
-        """Update all active lasers for Milestone 1."""
-        self.arsenal.update()
-        # Disabled for milestone 1
+    def  update_arsenal(self) -> None:
+     """Update lasers and remove those that leave the screen."""
+     self.arsenal.update()
+
+     for bullet in self.arsenal.copy():
+        if bullet.rect.bottom < 0:
+            self.arsenal.remove(bullet)
 
     def draw(self) -> None:
 
