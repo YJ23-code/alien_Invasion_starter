@@ -1,9 +1,9 @@
 """
 Program Name: Attacked by Rebels - Track 2
 Author: Yasir 
-Purpose: Run the main game and control the x-wing player, laser firing, and game screen for Milestone 1 
-Starter Code Links: Alien Invasion in class tutorial
-Date: 11/15.2026
+Purpose: Store game settings, asset paths, and difficulty settings.
+Starter Code: Alien Invasion in class tutorial
+Date: 11/21/2026
 """
 
 
@@ -28,7 +28,7 @@ class Settings:
         self.bullet_w = 25
         self.bullet_h = 80
         self.bullet_amount = 5
-        self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_4.png'
+        self.alien_file = Path(__file__).resolve().parent / 'Assets' / 'images' / 'tiefighter.png'
         self.alien_w = 50
         self.alien_h = 40
         self.fleet_speed = 5

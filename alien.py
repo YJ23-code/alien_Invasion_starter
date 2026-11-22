@@ -1,3 +1,14 @@
+"""
+Program Name: Attacked by Rebels - Track 2
+Author: Yasir 
+Purpose: Creates and controls enemy TIE fighters
+Starter Code: Alien Invasion in class tutorial
+Date: 11/21/2026
+"""
+
+
+
+
 import pygame
 from pygame.sprite import Sprite
 
@@ -12,7 +23,9 @@ class Alien(Sprite):
         self.settings = game.settings
         self.screen_rect = self.screen.get_rect()
 
-        self.image = pygame.image.load(self.settings.alien_file)
+        self.image = pygame.image.load(
+            str(self.settings.alien_file)
+        ).convert_alpha()
         self.image = pygame.transform.scale(
             self.image,
             (self.settings.alien_w, self.settings.alien_h)

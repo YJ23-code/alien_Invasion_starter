@@ -51,8 +51,8 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.arsenal = Arsenal(self)
         #Disabled till milestone 2
-        #self.fleet = AlienFleet(self)
-        #self.fleet.create_fleet()
+        self.fleet = AlienFleet(self)
+        self.fleet.create_fleet()
 
     def run_game(self):
         """Milestone 1 player prototype"""
@@ -65,7 +65,7 @@ class AlienInvasion:
             self.arsenal.update_arsenal()
 
             # Fleet and collision disabled for milestone 1 
-            # self.fleet.update_fleet()
+            self.fleet.update_fleet()
 
                 
 
@@ -164,7 +164,7 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0, 0))
         self.ship.blitme()
         self.arsenal.draw()
-        #self.fleet.aliens.draw(self.screen)
+        self.fleet.aliens.draw(self.screen)
         # Draw theplay button if the game is inactive.
         # Disable for milestone 1 
         #if not self.stats.game_active:
