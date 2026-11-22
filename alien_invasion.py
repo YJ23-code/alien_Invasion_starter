@@ -66,6 +66,12 @@ class AlienInvasion:
 
             # Fleet and collision disabled for milestone 1 
             self.fleet.update_fleet()
+            pygame.sprite.groupcollide(
+            self.arsenal.arsenal,
+            self.fleet.aliens,
+            True,
+            True
+            )
 
                 
 
