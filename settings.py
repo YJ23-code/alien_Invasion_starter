@@ -24,6 +24,7 @@ class Settings:
         self.ship_h = 60
         self.bullet_file = Path(__file__).resolve().parent / 'Assets' / 'images' / 'red_laser.png'
         self.laser_sound = Path(__file__).resolve().parent / 'Assets' / 'sound' / 'xwing_laser.mp3'
+        self.explosion_sound = Path(__file__).resolve().parent / 'Assets' / 'sound' / 'tie_explosion.mp3'
         self.bullet_speed = 7
         self.bullet_w = 25
         self.bullet_h = 80

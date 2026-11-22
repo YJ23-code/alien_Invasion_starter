@@ -50,15 +50,18 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.arsenal = Arsenal(self)
+        self.explosion_sound = pygame.mixer.Sound(
+             str(self.settings.explosion_sound)
+        )
         #Disabled till milestone 2
         self.fleet = AlienFleet(self)
         self.fleet.create_fleet()
 
     def run_game(self):
-        """Milestone 1 player prototype"""
+        """Run the game and update the player, lasers, and enemy fleet."""
         while self.running:
             self._check_events()
-            # Milestone 1: Only update the player and lasers.
+            
 
             
             self.ship.update()
@@ -66,12 +69,14 @@ class AlienInvasion:
 
             # Fleet and collision disabled for milestone 1 
             self.fleet.update_fleet()
-            pygame.sprite.groupcollide(
+            collisions = pygame.sprite.groupcollide(
             self.arsenal.arsenal,
             self.fleet.aliens,
             True,
             True
             )
+            if collisions:
+               self.explosion_sound.play()
 
                 
 
