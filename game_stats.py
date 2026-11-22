@@ -8,7 +8,7 @@ class GameStats:
         """Initialize statistics."""
         self.settings = game.settings
         self.reset_stats()
-        self.game_active = False
+        self.game_active = True
         # High score should not reset with each new game.
         self.high_score = 0
         # Location of the saved high-score file.

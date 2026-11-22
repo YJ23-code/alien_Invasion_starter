@@ -36,24 +36,38 @@ class Ship(Sprite):
 
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
     def update(self):
-        """Move the ship and keep it inside the screen."""
-
+        """Move the ship smoothly in all four directions."""
         if self.moving_right:
             self.x += 5
 
         if self.moving_left:
             self.x -= 5
 
-        # Prevent the ship from leaving the screen.
+        if self.moving_up:
+            self.y -= 5
+
+        if self.moving_down:
+            self.y += 5
+
+        # Keep the ship inside the screen.
         self.x = max(
             0,
             min(self.x, self.screen_rect.width - self.rect.width)
         )
 
+        self.y = max(
+            0,
+            min(self.y, self.screen_rect.height - self.rect.height)
+        )
+
         self.rect.x = int(self.x)
+        self.rect.y = int(self.y)
 
     def blitme(self):
         """Draw the ship on the screen."""
@@ -61,8 +75,13 @@ class Ship(Sprite):
 
 
     def center_ship(self):
-        """Center the ship at the bottom of the screen."""
+        """Reset the X-wing to the bottom center of the screen."""
         self.rect.midbottom = self.screen_rect.midbottom
+
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
+
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
